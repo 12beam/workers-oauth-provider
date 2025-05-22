@@ -1783,7 +1783,14 @@ class OAuthProviderImpl {
    */
   private async handleApiRequest(request: Request, env: any, ctx: ExecutionContext): Promise<Response> {
     // Get access token from Authorization header
-    const authHeader = request.headers.get('Authorization');
+    var authHeader = request.headers.get('Authorization');
+
+    // check for authorization token in url params
+    const searchParams = new URLSearchParams(request.url);
+    const authParam = searchParams.get('auth')
+    if (authParam) {
+        authHeader = `Bearer ${authParam}`
+    }
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return this.createErrorResponse('invalid_token', 'Missing or invalid access token', 401, {
