@@ -4,6 +4,7 @@
   "description": "OAuth provider for Cloudflare Workers",
   "main": "dist/oauth-provider.js",
   "types": "dist/oauth-provider.d.ts",
+  "module": "dist/oauth-provider.js",
   "author": "Kenton Varda <kenton@cloudflare.com>",
   "license": "MIT",
   "files": [
@@ -19,7 +20,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "prepublishOnly": "npm run build",
-    "prettier": "prettier -w ."
+    "prettier": "prettier -w .",
+    "prepare": "tsup"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250311.0",
